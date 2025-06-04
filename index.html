@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>学语言 - 学习真正重要的语言内容</title>
+    <title>HTML preview</title>
     <style>
         * {
             margin: 0;
@@ -21,7 +19,7 @@
         /* Header */
         header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            color: #fefefe;
             padding: 1rem 0;
             position: fixed;
             width: 100%;
@@ -87,7 +85,7 @@
             bottom: 0;
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="grad1" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:rgba(255,255,255,0.1);stop-opacity:1" /><stop offset="100%" style="stop-color:rgba(255,255,255,0);stop-opacity:1" /></radialGradient></defs><circle cx="200" cy="300" r="100" fill="url(%23grad1)"/><circle cx="800" cy="200" r="150" fill="url(%23grad1)"/><circle cx="400" cy="700" r="80" fill="url(%23grad1)"/></svg>') no-repeat center center;
             opacity: 0.3;
-            animation: float 6s ease-in-out infinite;
+            animation: float 4s ease-in-out infinite;
         }
 
         @keyframes float {
@@ -110,25 +108,24 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: slideInUp 1s ease;
+            
         }
 
-        @keyframes slideInUp {
+        
+        @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: translateY(50px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
             }
-        }
+        }        
 
         .hero p {
             font-size: 1.3rem;
             margin-bottom: 2rem;
             opacity: 0.9;
-            animation: slideInUp 1s ease 0.2s both;
+            animation: slideIn 1s ease 0.2s both;
         }
 
         .cta-button {
@@ -142,65 +139,43 @@
             font-size: 1.1rem;
             transition: all 0.3s ease;
             box-shadow: 0 10px 30px rgba(255,107,107,0.3);
-            animation: slideInUp 1s ease 0.4s both;
+            animation: slideIn 1s ease 0.8s both;
         }
+
 
         .cta-button:hover {
-            transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(255,107,107,0.4);
+            background:linear-gradient(45deg, #ff9500, #ff6b9d);
+            
         }
-
-        /* Problem Section */
-        .problem-section {
-            padding: 80px 0;
-            background: #f8f9fa;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
+        
         .section-title {
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 3rem;
             color: #333;
         }
-
-        .problems-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .problem-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        
+        .section-title-white {
             text-align: center;
-            transition: transform 0.3s ease;
-        }
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #fefefe;
+        }    
 
-        .problem-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .problem-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
 
         /* Solution Section */
+        /* Section 外容器，控制整体上下留白 */
         .solution-section {
-            padding: 80px 0;
+            padding: 60px 0; /* 增加上下空间 */
             background: white;
         }
-
+        
+        /* Section 内容容器，控制左右宽度 & 水平居中 */
         .solution-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem; /* 防止在小屏幕上贴边 */
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
@@ -271,14 +246,17 @@
 
         /* Courses Section */
         .courses-section {
-            padding: 80px 0;
+            padding: 60px 2rem;
             background: #f8f9fa;
         }
 
         .courses-grid {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
+            padding: 0 1rem; /* 防止贴边 */
         }
 
         .course-card {
@@ -287,10 +265,15 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            z-index: 1;
         }
 
         .course-card:hover {
+            /* Test 1: More dramatic Y movement */
             transform: translateY(-10px);
+            
         }
 
         .course-header {
@@ -312,12 +295,16 @@
         }
 
         .course-body {
+            flex: 1;
             padding: 2rem;
+            display: flex;
+            flex-direction: column;
         }
 
         .course-description {
             margin-bottom: 1.5rem;
             color: #666;
+            flex: 1;
         }
 
         .course-button {
@@ -329,10 +316,72 @@
             text-decoration: none;
             border-radius: 25px;
             transition: background 0.3s ease;
+            margin-top: auto;
+   
         }
 
         .course-button:hover {
             background: #218838;
+        }
+        
+        /* Teacher */
+        .teacher-section {
+            padding: 60px 0; /* 增加上下空间 */
+            background: #fefefe;
+        }
+
+        .teacher-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 0 1rem; /* 防止贴边 */
+        }
+
+        .teacher-card {
+            background: #667eea;
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            justify-content: flex-start;
+            
+        }
+
+        .teacher-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 4px solid #fefefe;
+            position: relative;
+        }
+
+        .teacher-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .teacher-info {
+            flex: 1;
+            color: #fefefe;
+        }
+
+        .teacher-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #fefefe;
+        }
+
+        .teacher-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #fefefe;
         }
 
         /* Footer */
@@ -417,15 +466,15 @@
 </head>
 <body>
     <!-- Header -->
-    <header>
+    <header style="background: linear-gradient(135deg, rgb(102, 126, 234) 0%, rgb(118, 75, 162) 100%);">
         <nav>
-            <div class="logo">学语言</div>
+            <div class="logo">看点日语</div>
             <ul class="nav-links">
                 <li><a href="index.html">首页</a></li>
-                <li><a href="courses.html">课程</a></li>
-                <li><a href="method.html">方法</a></li>
-                <li><a href="about.html">关于</a></li>
-                <li><a href="contact.html">联系</a></li>
+                <li><a href="courses.html">学习视频</a></li>
+                <li><a href="courses.html">常用表达</a></li>
+                <li><a href="about.html">常见问题</a></li>
+                <li><a href="contact.html">联系我们</a></li>
             </ul>
         </nav>
     </header>
@@ -433,33 +482,9 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>通过真正重要的话题学习语言</h1>
-            <p>别再背诵无关紧要的词汇了。开始理解你真正关心的话题中的真实对话。</p>
-            <a href="#courses" class="cta-button">立即开始学习</a>
-        </div>
-    </section>
-
-    <!-- Problem Section -->
-    <section class="problem-section">
-        <div class="container">
-            <h2 class="section-title">如果你厌倦了：</h2>
-            <div class="problems-grid">
-                <div class="problem-card">
-                    <div class="problem-icon">😴</div>
-                    <h3>枯燥的教科书课程</h3>
-                    <p>传统方法让你昏昏欲睡，内容过时，对话生硬。</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">🐌</div>
-                    <h3>进步缓慢</h3>
-                    <p>花了几个月学语法规则，却仍然听不懂真实对话。</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">🤷‍♂️</div>
-                    <h3>混乱的解释</h3>
-                    <p>复杂的语法解释让你比开始时更加困惑。</p>
-                </div>
-            </div>
+            <h1>看懂点教科书外的日语</h1>
+            <p> 富士摇滚音乐节｜打工的暴走族｜陪酒女的规矩｜罪恶的猫头鹰咖啡店｜...</p>
+            <a href="#courses" class="cta-button">立刻看</a>
         </div>
     </section>
 
@@ -468,23 +493,21 @@
         <div class="container">
             <div class="solution-content">
                 <div class="solution-text">
-                    <h2>那么我想向你展示一种不同的方法</h2>
-                    <p>一种尊重你的时间和智慧的方法。通过你真正感兴趣的话题的引人入胜的内容来学习。</p>
+                    <h2>地道日语100词， 立刻用得上</h2>
+                    <p> 如果你想在日本：买票换乘 ｜ 购物买单 ｜ 预约餐厅和点餐 ｜ 神社参拜 ｜ 问路 ｜ 护肤美发 ｜ 温泉旅馆 ｜ 查询当地人的攻略 ｜ ... </p>
                     
                     <ul class="solution-features">
-                        <li>来自母语者的真实对话</li>
-                        <li>对现代学习者重要的话题</li>
-                        <li>真正有意义的清晰解释</li>
-                        <li>循序渐进的难度建立信心</li>
-                        <li>让语言生动起来的文化背景</li>
+                        <li>真实生活里最常出现的单词</li>
+                        <li>最典型的例句用法</li>
+                        <li>清晰的中文解释和发音标注</li>
                     </ul>
 
                     <div class="interactive-demo">
                         <p><strong>亲自试试 - 点击这些词汇：</strong></p>
-                        <span class="word-bubble" onclick="playWord(this)">你好</span>
-                        <span class="word-bubble" onclick="playWord(this)">Hello</span>
-                        <span class="word-bubble" onclick="playWord(this)">Bonjour</span>
-                        <span class="word-bubble" onclick="playWord(this)">こんにちは</span>
+                        <span class="word-bubble" onclick="playWord(this)">愛ら武勇</span>
+                        <span class="word-bubble" onclick="playWord(this)">露天風呂</span>
+                        <span class="word-bubble" onclick="playWord(this)">一攫千金</span>
+                        <span class="word-bubble" onclick="playWord(this)">注文</span>
                     </div>
                 </div>
                 <div class="solution-image">
@@ -502,37 +525,71 @@
         <div class="container">
             <h2 class="section-title">选择你的学习路径</h2>
             <div class="courses-grid">
-                <div class="course-card">
+                <div class="course-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
                     <div class="course-header">
-                        <div class="course-level">A2 - B1 • 初级</div>
+                        <div class="course-level">零基础 - N4 • 初级</div>
                         <h3 class="course-title">打好基础</h3>
                     </div>
                     <div class="course-body">
-                        <p class="course-description">通过引人入胜的故事和实用对话掌握基础知识。非常适合在日常情况下建立信心。</p>
+                        <p class="course-description">一边了解日本社会文化，一边熟练掌握五十音图以及常用句。少量的日语附上详细的中文解释，非常适合一点点建立信心。</p>
                         <a href="courses.html" class="course-button">开始学习</a>
                     </div>
                 </div>
 
-                <div class="course-card">
+                <div class="course-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
                     <div class="course-header">
-                        <div class="course-level">B2 - C1 • 中级</div>
+                        <div class="course-level">N4 - N3 • 中级</div>
                         <h3 class="course-title">表达自己</h3>
                     </div>
                     <div class="course-body">
-                        <p class="course-description">学会分享你的想法并通过关于文化、社会和个人经历的讨论理解他人。</p>
+                        <p class="course-description">通过围绕文化、社会和个人经历的主题展开讨论，学习如何在日语里清晰表达自己的观点，并理解他人的立场。课程目标是能够在辅以简明中文注释的情况下，独立阅读较为完整的日语随笔。</p>
                         <a href="courses.html" class="course-button">开始表达</a>
                     </div>
                 </div>
 
-                <div class="course-card">
+                <div class="course-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
                     <div class="course-header">
-                        <div class="course-level">C1 - C2 • 高级</div>
+                        <div class="course-level">N2 - N1 • 高级</div>
                         <h3 class="course-title">掌握精髓</h3>
                     </div>
                     <div class="course-body">
-                        <p class="course-description">深入复杂话题，理解细微含义，像母语者一样成熟地说话。</p>
+                        <p class="course-description">深入探讨复杂但值得思考的话题，锻炼如母语者般地流畅表达能力与文化理解力。你将逐步掌握日语在现实语境中的微妙用法，实现真正的语言精通。</p>
                         <a href="courses.html" class="course-button">开始精通</a>
                     </div>
+                </div>
+            </div>
+        </div>
+        
+   <!-- Teacher Section -->
+    </section>
+    
+        <section class="teacher-section">
+        <h2 class="section-title">关于我们</h2>
+        
+        <div class="teacher-grid">
+            <!-- Teacher 1 -->
+            <div class="teacher-card">
+                <div class="teacher-photo">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face" alt="Dr. Sarah Johnson">
+                </div>
+                <div class="teacher-info">
+                    <h3 class="teacher-name">点点</h3>
+                    <p class="teacher-description">
+                        点点曾在日本长期生活并进行日语教学。持有池坊花道皆传免许，JLPTN1 170+。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Teacher 2 -->
+            <div class="teacher-card">
+                <div class="teacher-photo">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face" alt="Prof. Michael Chen">
+                </div>
+                <div class="teacher-info">
+                    <h3 class="teacher-name">萨路</h3>
+                    <p class="teacher-description">
+                        京都大学语言学硕士，学习并且研究日语超过十年。他是看点日语的主要顾问。
+                    </p>
                 </div>
             </div>
         </div>
@@ -547,25 +604,22 @@
                     <a href="courses.html">所有课程</a>
                     <a href="resources.html">免费资源</a>
                     <a href="method.html">学习方法</a>
-                    <a href="success.html">成功案例</a>
                 </div>
                 <div class="footer-section">
                     <h3>支持</h3>
-                    <a href="help.html">帮助中心</a>
                     <a href="contact.html">联系我们</a>
                     <a href="community.html">社区</a>
                     <a href="faq.html">常见问题</a>
                 </div>
                 <div class="footer-section">
-                    <h3>公司</h3>
-                    <a href="about.html">关于我们</a>
-                    <a href="mission.html">我们的使命</a>
-                    <a href="careers.html">招聘</a>
+                    <h3>组织</h3>
+                    <a href="mission.html">我们的理念</a>
+                    <a href="careers.html">志愿者招募</a>
                     <a href="privacy.html">隐私政策</a>
                 </div>
             </div>
             <div style="border-top: 1px solid #555; padding-top: 1rem; margin-top: 2rem;">
-                <p>&copy; 2025 学语言. 为全世界的语言学习者用 ❤️ 制作.</p>
+                <p>© 和全世界的日语学习者一起看点日语.</p>
             </div>
         </div>
     </footer>
@@ -632,5 +686,5 @@
             observer.observe(card);
         });
     </script>
-</body>
-</html>
+
+</body></html>
