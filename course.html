@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnTech Podcast - Master Technology Through Stories</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Latest Episode Banner */
+        .latest-episode-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .latest-episode-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .latest-episode-image {
+            width: 100%;
+            height: 300px;
+            border-radius: 15px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: slideInUp 1s ease 0.2s both;
+        }
+
+        .latest-episode-content {
+            animation: slideInUp 1s ease 0.4s both;
+        }
+
+        .episode-badge {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .latest-episode-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .latest-episode-description {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .episode-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .play-btn-large {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .play-btn-large:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+        }
+
+        .episode-duration {
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 40px;
+        }
+
+        /* Sidebar Filters */
+        .sidebar {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            height: fit-content;
+            position: sticky;
+            top: 120px;
+        }
+
+        .filter-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .filter-group {
+            margin-bottom: 25px;
+        }
+
+        .filter-group h4 {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-tags {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-tag {
+            background: #f8f9fa;
+            color: #666;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        .filter-tag:hover, .filter-tag.active {
+            background: #667eea;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .filter-count {
+            background: #e9ecef;
+            color: #666;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            margin-left: auto;
+        }
+
+        .filter-tag.active .filter-count {
+            background: rgba(255,255,255,0.3);
+            color: white;
+        }
+
+        /* Episodes Grid */
+        .episodes-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .episodes-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .episodes-title {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .episodes-count {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .episodes-grid {
+            display: grid;
+            gap: 30px;
+            
+        }
+
+        .episode-card {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 25px;
+            padding: 25px;
+            border: 1px solid #f0f0f0;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .episode-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: white;
+        }
+
+        .episode-image {
+            width: 100%;
+            height: 120px;
+            border-radius: 10px;
+            background: linear-gradient(45deg, #ff9a56, #ff6b95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .episode-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(255,154,86,0.8) 0%, 
+                rgba(255,107,149,0.8) 50%,
+                rgba(102,126,234,0.8) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .episode-card:hover .episode-image::before {
+            opacity: 1;
+        }
+
+        .episode-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .episode-meta-top {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .episode-number {
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .episode-tags {
+            display: flex;
+            gap: 8px;
+        }
+
+        .episode-tag {
+            background: #f0f0f0;
+            color: #666;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+        }
+
+        .episode-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+            line-height: 1.3;
+        }
+
+        .episode-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .episode-meta-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .episode-info {
+            display: flex;
+            gap: 20px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .play-btn-small {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .play-btn-small:hover {
+            background: #5a67d8;
+            transform: scale(1.05);
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 200px 1fr;
+                gap: 30px;
+            }
+
+            .latest-episode-container {
+                grid-template-columns: 250px 1fr;
+                gap: 30px;
+            }
+
+            .latest-episode-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .latest-episode-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .latest-episode-image {
+                width: 250px;
+                height: 250px;
+                margin: 0 auto;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .sidebar {
+                position: static;
+                order: 2;
+            }
+
+            .episode-card {
+                grid-template-columns: 150px 1fr;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .episode-image {
+                height: 100px;
+            }
+
+            .episode-title {
+                font-size: 1.2rem;
+            }
+
+            .episode-actions {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .episode-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .episode-image {
+                width: 100%;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">🎧 LearnTech</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#episodes">Episodes</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Latest Episode Banner -->
+    <section class="latest-episode-banner">
+        <div class="latest-episode-container">
+            <div class="latest-episode-image">🤖</div>
+            <div class="latest-episode-content">
+                <div class="episode-badge">LATEST EPISODE</div>
+                <h1 class="latest-episode-title">The Future of Artificial Intelligence</h1>
+                <p class="latest-episode-description">
+                    Explore the latest developments in AI technology and what they mean for developers and society. We discuss machine learning, neural networks, and ethical considerations in this comprehensive deep dive.
+                </p>
+                <div class="episode-actions">
+                    <button class="play-btn-large">▶ Play Episode</button>
+                    <span class="episode-duration">45 minutes</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Sidebar Filters -->
+        <aside class="sidebar">
+            <h3 class="filter-title">Filter Episodes</h3>
+            
+            <div class="filter-group">
+                <h4>By Theme</h4>
+                <div class="filter-tags">
+                    <a href="?e-filter-7d57ebc-post_tag=programming" class="filter-tag active">
+                        Programming <span class="filter-count">12</span>
+                    </a>
+                    <a href="?e-filter-7d57ebc-post_tag=ai-machine-learning" class="filter-tag">
+                        AI & ML <span class="filter-count">8</span>
+                    </a>
+                    <a href="?e-filter-7d57ebc-post_tag=web-development" class="filter-tag">
+                        Web Dev <span class="filter-count">15</span>
+                    </a>
+                    <a href="?e-filter-7d57ebc-post_tag=mobile-development" class="filter-tag">
+                        Mobile <span class="filter-count">6</span>
+                    </a>
+                    <a href="?e-filter-7d57ebc-post_tag=cybersecurity" class="filter-tag">
+                        Security <span class="filter-count">9</span>
+                    </a>
+                    <a href="?e-filter-7d57ebc-post_tag=cloud-computing" class="filter-tag">
+                        Cloud <span class="filter-count">7</span>
+                    </a>
+                    <a href="?e-filter-7d57ebc-post_tag=data-science" class="filter-tag">
+                        Data Science <span class="filter-count">10</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h4>By Level</h4>
+                <div class="filter-tags">
+                    <a href="?e-filter-7d57ebc-post_tag=beginner" class="filter-tag">
+                        Beginner <span class="filter-count">18</span>
+                    </a>
+                    <a href="?e-filter-7d57ebc-post_tag=intermediate" class="filter-tag">
+                        Intermediate <span class="filter-count">22</span>
+                    </a>
+                    <a href="?e-filter-7d57ebc-post_tag=advanced" class="filter-tag">
+                        Advanced <span class="filter-count">12</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Episodes Content -->
+        <main class="episodes-content">
+            <div class="episodes-header">
+                <h2 class="episodes-title">All Episodes</h2>
+                <span class="episodes-count">52 episodes</span>
+            </div>
+
+            <div class="episodes-grid">
+                <!-- Episode 1 -->
+                <div class="episode-card">
+                    <div class="episode-image">🌐</div>
+                    <div class="episode-details">
+                        <div>
+                            <div class="episode-meta-top">
+                                <span class="episode-number">EP 23</span>
+                                <div class="episode-tags">
+                                    <span class="episode-tag">Web Dev</span>
+                                    <span class="episode-tag">Trends</span>
+                                </div>
+                            </div>
+                            <h3 class="episode-title">Web Development Trends in 2025</h3>
+
+                        </div>
+                        <div class="episode-meta-bottom">
+                            <div class="episode-info">
+                                <span>10 min</span>
+                                <span>2025/06/15</span>
+                            </div>
+                            <button class="play-btn-small">▶ Play</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Episode 2 -->
+                <div class="episode-card">
+                    <div class="episode-image">📱</div>
+                    <div class="episode-details">
+                        <div>
+                            <div class="episode-meta-top">
+                                <span class="episode-number">EP 22</span>
+                                <div class="episode-tags">
+                                    <span class="episode-tag">Mobile</span>
+                                    <span class="episode-tag">Beginner</span>
+                                </div>
+                            </div>
+                            <h3 class="episode-title">Building Your First Mobile App</h3>
+
+                        </div>
+                        <div class="episode-meta-bottom">
+                            <div class="episode-info">
+                                <span>52 min</span>
+                                <span>Jan 8, 2025</span>
+                            </div>
+                            <button class="play-btn-small">▶ Play</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Episode 3 -->
+                <div class="episode-card">
+                    <div class="episode-image">🔒</div>
+                    <div class="episode-details">
+                        <div>
+                            <div class="episode-meta-top">
+                                <span class="episode-number">EP 21</span>
+                                <div class="episode-tags">
+                                    <span class="episode-tag">Security</span>
+                                    <span class="episode-tag">Essential</span>
+                                </div>
+                            </div>
+                            <h3 class="episode-title">Cybersecurity Essentials for Developers</h3>
+
+                        </div>
+                        <div class="episode-meta-bottom">
+                            <div class="episode-info">
+                                <span>41 min</span>
+                                <span>Jan 1, 2025</span>
+                            </div>
+                            <button class="play-btn-small">▶ Play</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Episode 4 -->
+                <div class="episode-card">
+                    <div class="episode-image">☁️</div>
+                    <div class="episode-details">
+                        <div>
+                            <div class="episode-meta-top">
+                                <span class="episode-number">EP 20</span>
+                                <div class="episode-tags">
+                                    <span class="episode-tag">Cloud</span>
+                                    <span class="episode-tag">AWS</span>
+                                </div>
+                            </div>
+                            <h3 class="episode-title">The Cloud Computing Revolution</h3>
+
+                        </div>
+                        <div class="episode-meta-bottom">
+                            <div class="episode-info">
+                                <span>47 min</span>
+                                <span>Dec 25, 2024</span>
+                            </div>
+                            <button class="play-btn-small">▶ Play</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Episode 5 -->
+                <div class="episode-card">
+                    <div class="episode-image">📊</div>
+                    <div class="episode-details">
+                        <div>
+                            <div class="episode-meta-top">
+                                <span class="episode-number">EP 19</span>
+                                <div class="episode-tags">
+                                    <span class="episode-tag">Data Science</span>
+                                    <span class="episode-tag">Beginner</span>
+                                </div>
+                            </div>
+                            <h3 class="episode-title">Data Science for Beginners</h3>
+
+                        </div>
+                        <div class="episode-meta-bottom">
+                            <div class="episode-info">
+                                <span>44 min</span>
+                                <span>Dec 18, 2024</span>
+                            </div>
+                            <button class="play-btn-small">▶ Play</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
