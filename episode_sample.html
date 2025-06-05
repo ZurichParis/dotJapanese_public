@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python 基础教程 - 第一集：变量和数据类型</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+            line-height: 1.7;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fefefe;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Episode Banner */
+        .episode-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0 40px 0;
+            margin-top: 70px;
+        }
+        
+        .episode-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        .episode-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-align: left;
+        }
+        
+        .episode-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px 40px 40px;
+        }
+        
+        /* Video Section */
+        .video-section {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Transcript Section */
+        .transcript-section {
+            margin-bottom: 40px;
+        }
+        
+        .transcript-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .transcript-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .transcript-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+        }
+        
+        .transcript-content p {
+            margin-bottom: 20px;
+        }
+        
+        .transcript-content strong {
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        /* Interactive Section */
+        .interactive-section {
+            padding: 40px 0;
+        }
+        
+        .rating-section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #fef3c7;
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            margin: 0 auto;
+            
+        }
+        
+        .rating-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: #1f2937;
+            line-height: 1.4;
+        }
+        
+        .rating-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 15px;
+        }
+        
+        .rating-star {
+            width: 40px;
+            height: 45px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+        
+        .rating-star:hover {
+            transform: scale(1.1);
+            background: rgba(251, 191, 36, 0.15);
+        }
+        
+        .rating-star svg {
+            width: 40px;
+            height: 40px;
+            fill: #fefefe;
+            transition: all 0.2s ease;
+        }
+        
+        .rating-star:hover svg,
+        .rating-star.filled svg {
+            fill: #fbbf24;
+            filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));
+        }
+        
+        .rating-star.filled {
+            animation: fillStar 0.3s ease-out;
+        }
+        
+        @keyframes fillStar {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .vote-feedback {
+            font-size: 0.9rem;
+            color: #16a34a;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: rgba(22, 163, 74, 0.1);
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .vote-feedback.show {
+            opacity: 1;
+        }
+        
+        .vote-stats {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-top: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .vote-stats.show {
+            opacity: 1;
+        }
+        
+        .like-section {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .like-button {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        .like-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+        
+        .like-button.liked {
+            background: linear-gradient(135deg, #51cf66 0%, #40c057 100%);
+            box-shadow: 0 4px 15px rgba(81, 207, 102, 0.3);
+        }
+        
+        .like-count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            margin-left: 5px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .episode-title {
+                font-size: 2rem;
+            }
+            
+            .episode-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .rating-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .rating-btn {
+                width: 100%;
+                max-width: 200px;
+            }
+            
+            .transcript-section,
+            .video-section,
+            .interactive-section {
+                padding: 20px;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .main-content > * {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .main-content > *:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+        
+        .main-content > *:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header style="background: linear-gradient(135deg, rgb(102, 126, 234) 0%, rgb(118, 75, 162) 100%);">
+        <nav>
+            <div class="logo">看点日语</div>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="courses.html">学习视频</a></li>
+                <li><a href="faq.html">常见问题</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Episode Banner -->
+    <section class="episode-banner">
+        <div class="episode-container">
+            <h1 class="episode-title">Python 基础：变量和数据类型</h1>
+            <div class="episode-meta">
+                <div class="meta-item">
+                    <span>📅</span>
+                    <span>2024年6月5日</span>
+                </div>
+                <div class="meta-item">
+                    <span>⏱️</span>
+                    <span>15分钟</span>
+                </div>
+                <div class="meta-item">
+                    <span>📊</span>
+                    <span>初级难度</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Video Section -->
+        <section class="video-section">
+            <div class="video-container">
+                <iframe 
+                    src="https://www.youtube.com/embed/4drvz67PccA" 
+                    title="Python 基础教程 - 变量和数据类型"
+                    frameborder="0" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+
+        <!-- Transcript Section -->
+        <section class="transcript-section">
+            <div class="transcript-header">
+                <h2 class="transcript-title">视频文稿</h2>
+            </div>
+            <div class="transcript-content">
+                <p>大家好，欢迎来到 Python 基础教程系列的第一集。今天我们要学习的是 <strong>变量和数据类型</strong>，这是每个 Python 程序员必须掌握的基础知识。</p>
+                
+                <p>首先，让我们来了解什么是变量。在 Python 中，<strong>变量就像是一个容器</strong>，用来存储数据。我们可以给这个容器起一个名字，然后把数据放进去。</p>
+                
+                <p>例如，如果我们想要存储一个人的姓名，我们可以这样写：</p>
+                
+                <p><strong>name = "张三"</strong></p>
+                
+                <p>这里，<strong>name</strong> 就是变量名，而 <strong>"张三"</strong> 就是我们存储的数据。等号 = 的作用是把右边的值赋给左边的变量。</p>
+                
+                <p>Python 有几种基本的数据类型：</p>
+                
+                <p><strong>1. 字符串（String）</strong>：用来存储文本数据，需要用引号包围，比如 "Hello" 或 '你好'。</p>
+                
+                <p><strong>2. 整数（Integer）</strong>：用来存储整数，比如 10, -5, 0。</p>
+                
+                <p><strong>3. 浮点数（Float）</strong>：用来存储带小数点的数字，比如 3.14, -2.5。</p>
+                
+                <p><strong>4. 布尔值（Boolean）</strong>：只有两个值，True 或 False，用来表示真或假。</p>
+                
+                <p>让我们看一些例子：</p>
+                
+                <p><strong>name = "李明"</strong>  # 字符串</p>
+                <p><strong>age = 25</strong>     # 整数</p>
+                <p><strong>height = 1.75</strong> # 浮点数</p>
+                <p><strong>is_student = True</strong> # 布尔值</p>
+                
+                <p>我们可以使用 <strong>type()</strong> 函数来查看变量的数据类型。例如：</p>
+                
+                <p><strong>print(type(name))</strong>  # 输出：&lt;class 'str'&gt;</p>
+                <p><strong>print(type(age))</strong>   # 输出：&lt;class 'int'&gt;</p>
+                
+                <p>变量名的命名规则很重要。变量名必须以字母或下划线开头，不能以数字开头。变量名只能包含字母、数字和下划线，不能包含空格或特殊字符。</p>
+                
+                <p>好的变量命名习惯包括：使用有意义的名字，比如 <strong>student_name</strong> 而不是 <strong>x</strong>；使用小写字母和下划线的组合，这是 Python 的约定。</p>
+                
+                <p>Python 还支持动态类型，这意味着同一个变量可以在不同时间存储不同类型的数据。例如：</p>
+                
+                <p><strong>x = 10</strong>      # x 是整数</p>
+                <p><strong>x = "Hello"</strong> # 现在 x 是字符串</p>
+                
+                <p>最后，我们可以对变量进行各种操作。对于数字，我们可以进行加减乘除；对于字符串，我们可以进行连接和重复。</p>
+                
+                <p>这就是今天关于变量和数据类型的基础知识。掌握这些概念对于学习 Python 非常重要，因为它们是构建更复杂程序的基础。</p>
+                
+                <p>感谢大家的收看，我们下一集见！</p>
+            </div>
+        </section>
+
+        <!-- Interactive Section -->
+        <section class="interactive-section">
+            <div class="rating-section">
+                <h3 class="rating-title">太简单了吗？</h3>
+                <div class="rating-container">
+                    <div class="rating-star" data-rating="1">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <div class="rating-star" data-rating="2">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <div class="rating-star" data-rating="3">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <div class="rating-star" data-rating="4">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <div class="rating-star" data-rating="5">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="vote-feedback" id="voteFeedback">谢谢你的投票！</div>
+                <div class="vote-stats" id="voteStats">平均评分: <span id="avgRating">0.0</span> | 总票数: <span id="totalVotes">0</span></div>
+            </div>
+
+
+            <!-- Like Section -->
+            <div class="like-section">
+                <button class="like-button" id="likeButton">
+                    <span id="likeIcon">❤️</span>
+                    <span id="likeText">喜欢这个教程</span>
+                    <span class="like-count" id="likeCount">0</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Rating functionality
+        const stars = document.querySelectorAll('.rating-star');
+        const voteFeedback = document.getElementById('voteFeedback');
+        const voteStats = document.getElementById('voteStats');
+        const avgRatingSpan = document.getElementById('avgRating');
+        const totalVotesSpan = document.getElementById('totalVotes');
+        
+        let currentRating = 0;
+        let userHasVoted = false;
+        
+        // Mock data for demonstration - in real app, this would come from backend
+        let totalVotes = 127;
+        let totalScore = 456; // Sum of all ratings
+        
+        // Initialize display
+        updateStats();
+        
+        stars.forEach((star, index) => {
+            star.addEventListener('mouseenter', () => {
+                if (!userHasVoted) {
+                    highlightStars(index + 1);
+                }
+            });
+            
+            star.addEventListener('mouseleave', () => {
+                if (!userHasVoted) {
+                    if (currentRating === 0) {
+                        clearStars();
+                    } else {
+                        highlightStars(currentRating);
+                    }
+                }
+            });
+            
+            star.addEventListener('click', () => {
+                if (!userHasVoted) {
+                    currentRating = index + 1;
+                    userHasVoted = true;
+                    
+                    // Update mock data
+                    totalVotes++;
+                    totalScore += currentRating;
+                    
+                    highlightStars(currentRating);
+                    showVoteFeedback();
+                    updateStats();
+                    
+                    // Disable further interactions
+                    stars.forEach(s => s.style.cursor = 'default');
+                }
+            });
+        });
+        
+        function highlightStars(rating) {
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('filled');
+                } else {
+                    star.classList.remove('filled');
+                }
+            });
+        }
+        
+        function clearStars() {
+            stars.forEach(star => star.classList.remove('filled'));
+        }
+        
+        function showVoteFeedback() {
+            voteFeedback.classList.add('show');
+        }
+        
+        function updateStats() {
+            const avgRating = totalVotes > 0 ? (totalScore / totalVotes).toFixed(1) : '0.0';
+            avgRatingSpan.textContent = avgRating;
+            totalVotesSpan.textContent = totalVotes;
+            voteStats.classList.add('show');
+        }
+
+        // Like functionality
+        const likeButton = document.getElementById('likeButton');
+        const likeIcon = document.getElementById('likeIcon');
+        const likeText = document.getElementById('likeText');
+        const likeCount = document.getElementById('likeCount');
+        
+        let isLiked = false;
+        let currentLikes = 42; // Starting number
+        
+        // Initialize like count
+        likeCount.textContent = currentLikes;
+        
+        likeButton.addEventListener('click', function() {
+            if (!isLiked) {
+                // Like the episode
+                isLiked = true;
+                currentLikes++;
+                likeButton.classList.add('liked');
+                likeIcon.textContent = '💚';
+                likeText.textContent = '已喜欢';
+                likeCount.textContent = currentLikes;
+            } else {
+                // Unlike the episode
+                isLiked = false;
+                currentLikes--;
+                likeButton.classList.remove('liked');
+                likeIcon.textContent = '❤️';
+                likeText.textContent = '喜欢这个教程';
+                likeCount.textContent = currentLikes;
+            }
+        });
+
+        // Scroll animation trigger
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe main content sections
+        document.querySelectorAll('.main-content > *').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
