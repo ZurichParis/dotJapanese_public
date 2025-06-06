@@ -106,34 +106,43 @@
         /* Main Content */
         .main-content {
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 3rem auto;
             padding: 0 40px 40px 40px;
         }
         
         /* Video Section */
+        .content-wrapper {
+            display: flex;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: stretch;
+        }
         .video-section {
-            margin-top: 15px;
-            margin-bottom: 15px;
+            flex: 2.5; /* Takes 2/3 of the width */
+            margin: 0; /* Remove previous margins */
         }
         
         .video-container {
             position: relative;
-            padding-bottom: 56.25%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
             height: 0;
             overflow: hidden;
-            border-radius: 8px;
+            border-radius: 15px;
+            background: #000;
         }
-        
         .video-container iframe {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100%; /* Full width of container */
+            height: 100%; /* Full height of container */
+            border: none; /* Removes default iframe border */
         }
         
         /* Transcript Section */
         .transcript-section {
+            margin-top: 40px;
             margin-bottom: 40px;
         }
         
@@ -150,7 +159,7 @@
         }
         
         .transcript-content {
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1.8;
             color: #444;
         }
@@ -166,27 +175,31 @@
         
         /* Interactive Section */
         .interactive-section {
-            padding: 40px 0;
+            flex: 0.5;
+            display: flex;
+            flex-direction: column; 
         }
         
         .rating-section {
-            margin-bottom: 40px;
             padding: 30px;
-            background: #fef3c7;
+            background: #f3f0ff;
             backdrop-filter: blur(10px);
             border-radius: 15px;
             text-align: center;
             max-width: 400px;
             margin: 0 auto;
-            
+            flex-grow: 1; /* Add this to fill remaining space */
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between;
         }
         
         .rating-title {
             font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 25px;
-            color: #1f2937;
+            font-weight: 500;
+            color: #6b7280;
             line-height: 1.4;
+            margin-bottom: 10px;
         }
         
         .rating-container {
@@ -194,12 +207,12 @@
             justify-content: center;
             align-items: center;
             gap: 4px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         
         .rating-star {
             width: 40px;
-            height: 45px;
+            height: 40px;
             cursor: pointer;
             transition: all 0.2s ease;
             position: relative;
@@ -211,7 +224,6 @@
         
         .rating-star:hover {
             transform: scale(1.1);
-            background: rgba(251, 191, 36, 0.15);
         }
         
         .rating-star svg {
@@ -223,7 +235,7 @@
         
         .rating-star:hover svg,
         .rating-star.filled svg {
-            fill: #fbbf24;
+            fill: #a78bfa;
             filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));
         }
         
@@ -238,14 +250,9 @@
         }
         
         .vote-feedback {
-            font-size: 0.9rem;
-            color: #16a34a;
-            margin-top: 10px;
-            padding: 8px 16px;
-            background: rgba(22, 163, 74, 0.1);
-            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #6b7280;
             display: inline-block;
-            font-weight: 500;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -257,7 +264,7 @@
         .vote-stats {
             font-size: 0.8rem;
             color: #6b7280;
-            margin-top: 12px;
+            margin-top: 6px;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -266,42 +273,98 @@
             opacity: 1;
         }
         
-        .like-section {
-            margin-top: 1rem;
-            text-align: center;
-        }
-        
-        .like-button {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+        /* Subscribe Button */
+        .subscribe-btn {
+            background: #a78bfa;
             color: white;
             border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-size: 1.1rem;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            margin: 20px 0;
         }
         
-        .like-button:hover {
+        .subscribe-btn:hover {
+            background: linear-gradient(135deg, #a78bfa 0%, #93c5fd 100%);;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+
         }
         
-        .like-button.liked {
-            background: linear-gradient(135deg, #51cf66 0%, #40c057 100%);
-            box-shadow: 0 4px 15px rgba(81, 207, 102, 0.3);
+        /* Contact Section */
+        .contact-section {
+            margin-top: auto; /* Pushes to bottom */
+            display: flex;
+            flex-direction: column;
         }
         
-        .like-count {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 4px 8px;
-            border-radius: 12px;
+        
+        .contact-line {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-top: 6px;
+            margin-bottom: 6px;
+            opacity: 1;
+        }
+        
+        /* QR Code Placeholder */
+        .qr-placeholder {
+            width: 150px;
+            height: 150px;
+            background: white;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .qr-icon {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+        
+        .qr-placeholder p {
+            margin: 0;
             font-size: 0.9rem;
-            margin-left: 5px;
+            color: #666;
+        }
+        
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
         }
         
         /* Responsive Design */
@@ -309,6 +372,7 @@
             .nav-links {
                 display: none;
             }
+            
             .episode-title {
                 font-size: 2rem;
             }
@@ -316,6 +380,14 @@
             .episode-meta {
                 flex-direction: column;
                 gap: 15px;
+            }
+            
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .interactive-section {
+                display: none;
             }
             
             .rating-buttons {
@@ -391,6 +463,10 @@
                     <span>📊</span>
                     <span>初级难度</span>
                 </div>
+                <div class="meta-item">
+                    <span>📊</span>
+                    <span>文字笔记见视频下方 </span>
+                </div>
             </div>
         </div>
     </section>
@@ -398,21 +474,73 @@
     <!-- Main Content -->
     <main class="main-content">
         <!-- Video Section -->
-        <section class="video-section">
-            <div class="video-container">
-                <iframe 
-                    src="https://www.youtube.com/embed/4drvz67PccA" 
-                    title="Python 基础教程 - 变量和数据类型"
-                    frameborder="0" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-        </section>
+        <div class="content-wrapper">
+            <section class="video-section">
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/4drvz67PccA" 
+                        title="Python 基础教程 - 变量和数据类型"
+                        frameborder="0" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </section>
+            <section class="interactive-section">
+                <div class="rating-section">
+                    <h3 class="rating-title">太简单了吗？</h3>
+                    <div class="rating-container">
+                        <div class="rating-star" data-rating="1">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <div class="rating-star" data-rating="2">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <div class="rating-star" data-rating="3">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <div class="rating-star" data-rating="4">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <div class="rating-star" data-rating="5">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="vote-stats" id="voteStats">平均评分: <span id="avgRating">0.0</span> | 总票数: <span id="totalVotes">0</span></div>
+                    <div class="vote-feedback" id="voteFeedback">谢谢你的投票！</div>
+                    <!-- Subscribe Button -->
+                    <button class="subscribe-btn" onclick="window.open('https://youtube.com/@yourchannel', '_blank')">
+                        🔔 订阅我们的油管频道
+                    </button>
+                    
+                    <!-- QR Code Section -->
+                    <div class="contact-section">
+                        <div class="contact-line">进群和大家一起学日语</div>
+                        <div class="qr-placeholder">
+                            <div class="qr-icon">📱</div>
+                            <p>进群和大家一起学日语</p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </section>
+        </div>
 
         <!-- Transcript Section -->
         <section class="transcript-section">
             <div class="transcript-header">
-                <h2 class="transcript-title">视频文稿</h2>
+                <h2 class="transcript-title">今日</h2>
             </div>
             <div class="transcript-content">
                 <p>大家好，欢迎来到 Python 基础教程系列的第一集。今天我们要学习的是 <strong>变量和数据类型</strong>，这是每个 Python 程序员必须掌握的基础知识。</p>
@@ -460,56 +588,43 @@
                 
                 <p>这就是今天关于变量和数据类型的基础知识。掌握这些概念对于学习 Python 非常重要，因为它们是构建更复杂程序的基础。</p>
                 
-                <p>感谢大家的收看，我们下一集见！</p>
+                <p>那今天的学习就到这里，喜欢的朋友可以订阅点赞我们的油管频道，这样就能收到及时的更新通知啦。我们下期见。</p>
             </div>
+                    <!-- Subscribe Button -->
+            <button class="subscribe-btn" onclick="window.open('https://youtube.com/@yourchannel', '_blank')">
+                🔔 订阅我们的油管频道
+            </button>
         </section>
 
-        <!-- Interactive Section -->
-        <section class="interactive-section">
-            <div class="rating-section">
-                <h3 class="rating-title">太简单了吗？</h3>
-                <div class="rating-container">
-                    <div class="rating-star" data-rating="1">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                    </div>
-                    <div class="rating-star" data-rating="2">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                    </div>
-                    <div class="rating-star" data-rating="3">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                    </div>
-                    <div class="rating-star" data-rating="4">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                    </div>
-                    <div class="rating-star" data-rating="5">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                    </div>
-                </div>
-                <div class="vote-feedback" id="voteFeedback">谢谢你的投票！</div>
-                <div class="vote-stats" id="voteStats">平均评分: <span id="avgRating">0.0</span> | 总票数: <span id="totalVotes">0</span></div>
-            </div>
-
-
-            <!-- Like Section -->
-            <div class="like-section">
-                <button class="like-button" id="likeButton">
-                    <span id="likeIcon">❤️</span>
-                    <span id="likeText">喜欢这个教程</span>
-                    <span class="like-count" id="likeCount">0</span>
-                </button>
-            </div>
-        </section>
     </main>
+    
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>学习</h3>
+                    <a href="method.html">指南</a>
+                    <a href="community.html">学友社区</a>
+                </div>
+                <div class="footer-section">
+                    <h3>支持</h3>
+                    <a href="contact.html">联系我们</a>
+                    <a href="faq.html">常见问题</a>
+                </div>
+                <div class="footer-section">
+                    <h3>组织</h3>
+                    <a href="mission.html">我们的理念</a>
+                    <a href="volunteer.html">志愿者招募</a>
+                    <a href="privacy.html">隐私政策</a>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #555; padding-top: 1rem; margin-top: 2rem;">
+                <p>© 和全世界的日语学习者一起看点日语.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
         // Rating functionality
@@ -590,37 +705,6 @@
             voteStats.classList.add('show');
         }
 
-        // Like functionality
-        const likeButton = document.getElementById('likeButton');
-        const likeIcon = document.getElementById('likeIcon');
-        const likeText = document.getElementById('likeText');
-        const likeCount = document.getElementById('likeCount');
-        
-        let isLiked = false;
-        let currentLikes = 42; // Starting number
-        
-        // Initialize like count
-        likeCount.textContent = currentLikes;
-        
-        likeButton.addEventListener('click', function() {
-            if (!isLiked) {
-                // Like the episode
-                isLiked = true;
-                currentLikes++;
-                likeButton.classList.add('liked');
-                likeIcon.textContent = '💚';
-                likeText.textContent = '已喜欢';
-                likeCount.textContent = currentLikes;
-            } else {
-                // Unlike the episode
-                isLiked = false;
-                currentLikes--;
-                likeButton.classList.remove('liked');
-                likeIcon.textContent = '❤️';
-                likeText.textContent = '喜欢这个教程';
-                likeCount.textContent = currentLikes;
-            }
-        });
 
         // Scroll animation trigger
         const observerOptions = {
