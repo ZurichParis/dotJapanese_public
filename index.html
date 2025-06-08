@@ -16,6 +16,15 @@
             color: #333;
             overflow-x: hidden;
         }
+        
+        /* Scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+        }
 
         /* Header */
         header {
@@ -166,9 +175,8 @@
 
 
         /* Solution Section */
-        /* Section 外容器，控制整体上下留白 */
         .solution-section {
-            padding: 60px 0; /* 增加上下空间 */
+            padding: 3rem 0; /* 增加上下空间 */
             background: white;
         }
         
@@ -247,7 +255,7 @@
 
         /* Courses Section */
         .courses-section {
-            padding: 60px 0.5rem;
+            padding: 3rem 0;
             background: #f8f9fa;
         }
 
@@ -327,7 +335,8 @@
 
         /* FAQ */
         .faq-section {
-            padding: 4rem 0;
+            padding: 3rem 0;
+            background: white;
         }
 
         .faq-header {
@@ -367,7 +376,7 @@
             background: none;
             border: none;
             width: 100%;
-            padding: 1.5rem;
+            padding: 0.8rem;
             text-align: left;
             font-size: 1.1rem;
             font-weight: 600;
@@ -408,7 +417,7 @@
         }
 
         .faq-answer-content {
-            padding: 1.5rem;
+            padding: 0.8rem;
             color: #6b7280;
             line-height: 1.7;
         }
@@ -416,8 +425,8 @@
         
         /* Teacher */
         .teacher-section {
-            padding: 60px 0.5rem; /* 增加上下空间 */
-            background: #fefefe;
+            padding: 3rem 0; /* 增加上下空间 */
+            background: #f8f9fa;
         }
 
         .teacher-grid {
@@ -642,90 +651,59 @@
                         <h3 class="course-title">掌握精髓</h3>
                     </div>
                     <div class="course-body">
-                        <p class="course-description">深入探讨复杂但值得思考的话题。你将会用日语学日语，实现真正的语言精通。</p>
+                        <p class="course-description">你将会开始用日语学习日语，看懂纯日语的视频和笔记，实现真正的语言精通。</p>
                         <a href="courses.html" class="course-button">开始精通</a>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
     <!-- FAQ Section -->
     <section id="faq" class="faq-section">
         <div class="container">
-            <div class="faq-header">
-                <h2>Frequently Asked Questions</h2>
-                <p>Find answers to common questions about our service. Can't find what you're looking for? Contact our support team.</p>
-            </div>
-            
+            <h2 class="section-title">常见问题</h2>
             <div class="faq-container">
                 <div class="faq-item">
                     <button class="faq-question">
-                        What is your service about?
+                        看点日语免费吗？
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Our service provides comprehensive solutions for businesses looking to streamline their operations. We offer cloud-based tools, analytics, and 24/7 support to help you achieve your goals efficiently.
+                        <div class="faq-answer-content"> 是的！你可以自由阅览我们的教学视频和对应文本笔记：）
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        我可以在这里找到什么样的学习资源？
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">我们用日语分享日本亚文化和小众知识，以及实际生活中常常遇见，但教科书上不教的日语。有趣的内容会让我们学得更快更轻松！
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        看点日语适合什么水平的学生？
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">从零基础到中高级，你可以在每期的开头看到级别分类。初级内容有详细的中文解释，高级内容是沉浸式纯日语学习。
                         </div>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question">
-                        How much does it cost?
+                        初学者要怎么开始？
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            We offer flexible pricing plans starting from $19/month for basic features. Our premium plan is $49/month and includes advanced analytics and priority support. Enterprise plans are available with custom pricing.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Is there a free trial available?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Yes! We offer a 14-day free trial with full access to all features. No credit card required to start. You can upgrade to a paid plan anytime during or after the trial period.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        What kind of support do you provide?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            We provide 24/7 customer support through live chat, email, and phone. Our support team consists of technical experts who can help with setup, troubleshooting, and best practices. Premium users get priority support with faster response times.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Can I cancel my subscription anytime?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Absolutely! You can cancel your subscription at any time from your account dashboard. There are no cancellation fees, and you'll continue to have access to your account until the end of your current billing period.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Is my data secure?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Security is our top priority. We use industry-standard encryption, regular security audits, and comply with GDPR and SOC 2 standards. Your data is stored in secure, redundant servers with automatic backups and 99.9% uptime guarantee.
+                        <div class="faq-answer-content">从零基础到中高级，你可以在每期的开头看到级别分类。初级内容有详细的中文解释，高级内容是沉浸式纯日语学习。
                         </div>
                     </div>
                 </div>
@@ -734,16 +712,15 @@
     </section>
         
    <!-- Teacher Section -->
-    </section>
     
-        <section class="teacher-section">
+    <section class="teacher-section">
         <h2 class="section-title">关于我们</h2>
         
         <div class="teacher-grid">
             <!-- Teacher 1 -->
             <div class="teacher-card">
                 <div class="teacher-photo">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face" alt="Dr. Sarah Johnson">
+                    <img src="" alt="Dr. Sarah Johnson">
                 </div>
                 <div class="teacher-info">
                     <h3 class="teacher-name">点点</h3>
@@ -756,7 +733,7 @@
             <!-- Teacher 2 -->
             <div class="teacher-card">
                 <div class="teacher-photo">
-                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face" alt="Prof. Michael Chen">
+                    <img src="" alt="Prof. Michael Chen">
                 </div>
                 <div class="teacher-info">
                     <h3 class="teacher-name">萨路</h3>
