@@ -356,9 +356,19 @@
             max-width: 600px;
             margin: 0 auto;
         }
-
+        
         .faq-container {
-            max-width: 800px;
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 0 0.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .faq-items {
+            max-width: 600px;
             margin: 0 auto;
         }
 
@@ -421,34 +431,12 @@
             color: #6b7280;
             line-height: 1.7;
         }
-
-        /* Contact  */
-        
-        .contact-section {
-            padding: 3rem 0;
-            background: #f8f9fa;
-        }
-        
-        .contact-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            padding: 0 0.5rem; /* 防止贴边 */
-            
-        }
-        
-        .contact-pic {
-            background: pink;
-        }
         
         .contact-info {
             display: flex;
             gap: 1rem;
             align-items: center;
             justify-content: center;
-            background: pink;
         }
 
         .qr-section {
@@ -600,7 +588,10 @@
                 height: 250px;
                 order: -1;
             }
-        }
+            
+            .faq-container {
+                grid-template-columns: 1fr;
+            }
 
         /* Interactive Elements */
         .interactive-demo {
@@ -633,8 +624,7 @@
             <ul class="nav-links">
                 <li><a href="index.html">首页</a></li>
                 <li><a href="courses.html">学习视频</a></li>
-                <li><a href="#contact">联系我们</a></li>
-                <li><a href="#teacher">关于我们</a></li>
+                <li><a href="#faq">联系我们</a></li>
             </ul>
         </nav>
     </header>
@@ -726,79 +716,71 @@
         <div class="container">
             <h2 class="section-title">常见问题</h2>
             <div class="faq-container">
-                <div class="faq-item">
-                    <button class="faq-question">
-                        看点日语是免费的吗？
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content"> 是的！你可以自由阅览我们的教学视频和对应文本笔记：）
+                <div class="faq-items">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            看点日语是免费的吗？
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content"> 是的！你可以自由阅览我们的教学视频和对应文本笔记：）
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="faq-item">
-                    <button class="faq-question">
-                        我可以在这里找到什么样的学习资源？
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">我们用日语分享日本亚文化和小众知识，以及实际生活中常常遇见，但教科书上不教的日语。有趣的内容会让我们学得更快更轻松！
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            我可以在这里找到什么样的学习资源？
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">我们用日语分享日本亚文化和小众知识，以及实际生活中常常遇见，但教科书上不教的日语。有趣的内容会让我们学得更快更轻松！
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="faq-item">
-                    <button class="faq-question">
-                        看点日语适合什么水平的学生？
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">从零基础到中高级，你可以在每期的开头看到级别分类。初级内容有详细的中文解释，高级内容是沉浸式纯日语学习。
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            看点日语适合什么水平的学生？
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">从零基础到中高级，你可以在每期的开头看到级别分类。初级内容有详细的中文解释，高级内容是沉浸式纯日语学习。
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="faq-item">
-                    <button class="faq-question">
-                        初学者要怎么开始？
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">选择我们的初级课程（完全免费），跟着视频和文字笔记学习五十音图和基本会话。初级阶段的目标是能够正确流畅地读日语！
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            初学者要怎么开始？
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">选择我们的初级课程（完全免费），跟着视频和文字笔记学习五十音图和基本会话。初级阶段的目标是能够正确流畅地读日语！
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        在哪里加入免费学习社群？
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">参照下方添加我们的联系方式，就能找到一起学日语的同学。看点日语学习社群的目的是让大家在学习过程中互相监督和帮助。
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            在哪里加入免费学习社群？
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">参照下方添加我们的联系方式，就能找到一起学日语的同学。看点日语学习社群的目的是让大家在学习过程中互相监督和帮助。
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        我更想了解一对一私人课？
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">每节课45分钟，以口语为重点，教科书选择全世界最受欢迎的日语教材「みんなの日本語」（大家的日语）。欢迎你联系我们免费咨询。
+    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            我更想了解一对一私人课？
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">每节课45分钟，以口语为重点，教科书选择全世界最受欢迎的日语教材「みんなの日本語」（大家的日语）。欢迎你联系我们免费咨询。
+                            </div>
                         </div>
                     </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-   <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="contact-grid">
-            <div class="contact-pic">
             </div>
             <div class="contact-info">
                 <div class="qr-section">
@@ -812,9 +794,10 @@
                     <p class="qr-description">扫码添加微信，获取更多学习资料</p>
                 </div>
             </div>
-    </div>
+            
+        </div>
     </section>
-        
+  
    <!-- Teacher Section -->
     
     <section id="teacher" class="teacher-section">
@@ -854,11 +837,11 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>学习</h3>
-                    <a href="#contact">学友社区</a>
+                    <a href="#faq">学友社区</a>
                 </div>
                 <div class="footer-section">
                     <h3>组织</h3>
-                    <a href="#contact">联系我们</a>
+                    <a href="#faq">联系我们</a>
                     <a href="https://lizardon.notion.site/Privacy-Policy-20dd34a592f9800cbd32e2e36cc3a0b0?source=copy_link">隐私政策</a>
                 </div>
             </div>
