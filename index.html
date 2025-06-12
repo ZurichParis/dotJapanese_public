@@ -422,11 +422,73 @@
             line-height: 1.7;
         }
 
+        /* Contact  */
+        
+        .contact-section {
+            padding: 3rem 0;
+            background: #f8f9fa;
+        }
+        
+        .contact-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 0 0.5rem; /* 防止贴边 */
+            
+        }
+        
+        .contact-pic {
+            background: pink;
+        }
+        
+        .contact-info {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+            background: pink;
+        }
+
+        .qr-section {
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .qr-placeholder {
+            width: 150px;
+            height: 150px;
+            border: 3px dashed #d1d5db;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem auto;
+            color: #9ca3af;
+            font-size: 0.9rem;
+            background: rgba(249, 250, 251, 0.8);
+        }
+
+        .qr-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .qr-description {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
         
         /* Teacher */
         .teacher-section {
             padding: 3rem 0; /* 增加上下空间 */
-            background: #f8f9fa;
+            background: white;
         }
 
         .teacher-grid {
@@ -571,7 +633,8 @@
             <ul class="nav-links">
                 <li><a href="index.html">首页</a></li>
                 <li><a href="courses.html">学习视频</a></li>
-                <li><a href="contact.html">联系我们</a></li>
+                <li><a href="#contact">联系我们</a></li>
+                <li><a href="#teacher">关于我们</a></li>
             </ul>
         </nav>
     </header>
@@ -579,7 +642,7 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>看懂点教科书外的日语</h1>
+            <h1>来看点生活里的日语</h1>
             <p> 在日本如何当一名合格的暴走族｜猫头鹰咖啡馆的邪恶交易｜在东京陪酒很赚钱吗｜...</p>
             <a href="courses.html" class="cta-button">立刻看</a>
         </div>
@@ -620,7 +683,7 @@
     <!-- Courses Section -->
     <section class="courses-section" id="courses">
         <div class="container">
-            <h2 class="section-title">选择你的学习路径</h2>
+            <h2 class="section-title">选择适合你的课程合集</h2>
             <div class="courses-grid">
                 <div class="course-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
                     <div class="course-header">
@@ -665,7 +728,7 @@
             <div class="faq-container">
                 <div class="faq-item">
                     <button class="faq-question">
-                        看点日语免费吗？
+                        看点日语是免费的吗？
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
@@ -702,17 +765,59 @@
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">从零基础到中高级，你可以在每期的开头看到级别分类。初级内容有详细的中文解释，高级内容是沉浸式纯日语学习。
+                        <div class="faq-answer-content">选择我们的初级课程（完全免费），跟着视频和文字笔记学习五十音图和基本会话。初级阶段的目标是能够正确流畅地读日语！
                         </div>
                     </div>
                 </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        在哪里加入免费学习社群？
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">参照下方添加我们的联系方式，就能找到一起学日语的同学。看点日语学习社群的目的是让大家在学习过程中互相监督和帮助。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        我更想了解一对一私人课？
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">每节课45分钟，以口语为重点，教科书选择全世界最受欢迎的日语教材「みんなの日本語」（大家的日语）。欢迎你联系我们免费咨询。
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
+    </section>
+
+   <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="contact-grid">
+            <div class="contact-pic">
+            </div>
+            <div class="contact-info">
+                <div class="qr-section">
+                    <h3 class="qr-title">微信二维码</h3>
+                    <div class="qr-placeholder">微信二维码位置</div>
+                    <p class="qr-description">扫码添加微信，获取更多学习资料</p>
+                </div>
+                <div class="qr-section">
+                    <h3 class="qr-title">微信二维码</h3>
+                    <div class="qr-placeholder">微信二维码位置</div>
+                    <p class="qr-description">扫码添加微信，获取更多学习资料</p>
+                </div>
+            </div>
+    </div>
     </section>
         
    <!-- Teacher Section -->
     
-    <section class="teacher-section">
+    <section id="teacher" class="teacher-section">
         <h2 class="section-title">关于我们</h2>
         
         <div class="teacher-grid">
@@ -722,22 +827,21 @@
                     <img src="" alt="Dr. Sarah Johnson">
                 </div>
                 <div class="teacher-info">
-                    <h3 class="teacher-name">胖达</h3>
+                    <h3 class="teacher-name">但理</h3>
                     <p class="teacher-description">
-                        一只说日语的四川产熊猫。
+                        看点日语的主创人。持有日语能力考试N1证书（172/180），在日生活五年，有丰富的文书辅导，日语教学和翻译经验，熟悉日本文化。
                     </p>
                 </div>
             </div>
-
             <!-- Teacher 2 -->
             <div class="teacher-card">
                 <div class="teacher-photo">
-                    <img src="" alt="Prof. Michael Chen">
+                    <img src="" alt="Dr. Sarah Johnson">
                 </div>
                 <div class="teacher-info">
                     <h3 class="teacher-name">萨路</h3>
                     <p class="teacher-description">
-                        一只研究日语超过十年的猴子。
+                        看点日语的合作者以及撰稿人。修得京都大学语言学硕士学位，学习研究日语超过十年，同样持有日语能力考试N1证书。
                     </p>
                 </div>
             </div>
@@ -750,11 +854,11 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>学习</h3>
-                    <a href="community.html">学友社区</a>
+                    <a href="#contact">学友社区</a>
                 </div>
                 <div class="footer-section">
                     <h3>组织</h3>
-                    <a href="contact.html">联系我们</a>
+                    <a href="#contact">联系我们</a>
                     <a href="https://lizardon.notion.site/Privacy-Policy-20dd34a592f9800cbd32e2e36cc3a0b0?source=copy_link">隐私政策</a>
                 </div>
             </div>
